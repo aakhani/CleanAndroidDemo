@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package com.cleanandroiddemo.view.presenter;
+package com.cleanandroiddemo.view.base;
 
+import com.cleanandroiddemo.view.base.BaseView;
 import com.cleanandroiddemo.view.fragment.CategoryFragmentView;
 
-public interface Presenter{
+public interface Presenter<T>{
 
-  void initialize(CategoryFragmentView view);
+  void initialize(T view);
 }

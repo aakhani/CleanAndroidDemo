@@ -15,7 +15,7 @@ import com.cleanandroiddemo.R;
 import com.cleanandroiddemo.SampleApplication;
 import com.cleanandroiddemo.view.adapter.CategoryAdapter;
 import com.cleanandroiddemo.view.model.CategoryViewModel;
-import com.cleanandroiddemo.view.presenter.CategoriesPresenter;
+import com.cleanandroiddemo.view.presenter.CategoriesPresenterImpl;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 public class CategoryFragment extends Fragment implements CategoryFragmentView {
 
     @Inject
-    CategoriesPresenter categoriesPresenter;
+    CategoriesPresenterImpl categoriesPresenter;
     CategoryAdapter categoryAdapter;
 
     @BindView(R.id.recycler_view)
@@ -45,8 +45,11 @@ public class CategoryFragment extends Fragment implements CategoryFragmentView {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category,container, false);
+        setRetainInstance(true);
         ButterKnife.bind(this,view);
         initView();
+
+        categoriesPresenter.getCategoriesList();
 
         return view;
     }
