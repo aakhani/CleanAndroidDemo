@@ -99,6 +99,6 @@ public class CategoryFragment extends Fragment implements CategoryFragmentView {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        categoriesPresenter.destroy();
+        categoriesPresenter.onDestroy();
     }
 }

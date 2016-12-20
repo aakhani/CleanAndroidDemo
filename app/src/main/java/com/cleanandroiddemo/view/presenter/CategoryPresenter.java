@@ -10,4 +10,5 @@ import com.cleanandroiddemo.view.fragment.CategoryFragmentView;
 public interface CategoryPresenter extends Presenter<CategoryFragmentView> {
 
     void getCategoriesList();
+    void onDestroy();
 }

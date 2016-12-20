@@ -39,17 +39,16 @@ public class CategoriesPresenterImpl implements CategoryPresenter {
 
     @Override
     public void getCategoriesList() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getCategories.execute(new CategoriesListSubscriber());
-            }
-        },5000);
+        categoryFragmentView.showLoading();
+        getCategories.execute(new CategoriesListSubscriber());
     }
 
-    public void destroy() {
+    @Override
+    public void onDestroy() {
         getCategories.unsubscribe();
+        categoryFragmentView =null;
     }
+
 
     private class CategoriesListSubscriber extends DefaultSubscriber<List<Category>> {
         @Override
@@ -65,9 +64,12 @@ public class CategoriesPresenterImpl implements CategoryPresenter {
         @Override
         public void onNext(List<Category> categories) {
             super.onNext(categories);
-            List<CategoryViewModel> categoryViewModelList = mapper.reverseMap(categories);
-            Log.e("Categories Presenter", categoryViewModelList.size()+"");
-            categoryFragmentView.showCategories(categoryViewModelList);
+
+            if(categoryFragmentView!=null) {
+                List<CategoryViewModel> categoryViewModelList = mapper.reverseMap(categories);
+                Log.e("Categories Presenter", categoryViewModelList.size() + "");
+                categoryFragmentView.showCategories(categoryViewModelList);
+            }
         }
     }
 }

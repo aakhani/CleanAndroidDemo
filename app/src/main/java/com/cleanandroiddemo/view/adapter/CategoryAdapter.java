@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Avdhesh AKhani on 8/7/2016.
+ * Created by Avdhesh AKhani on 12/13/2016.
  */
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
@@ -42,7 +42,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
     public void addAll(List<CategoryViewModel> list) {
         categoryList.addAll(list);
-        Log.e("Category Adapter",categoryList.size()+"");
     }
 
 
